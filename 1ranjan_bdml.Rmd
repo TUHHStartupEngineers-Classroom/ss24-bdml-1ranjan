@@ -29,7 +29,7 @@ library(yardstick)
 library(rpart.plot)
 library(modeldata)
 # Data exploration
-bike_data_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning\Machine Learning/data/Business Decisions with Machine Learning/bike_orderlines.rds")
+bike_data_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/bike_orderlines.rds")
 model_sales_tbl <- bike_data_tbl %>%
   select(total_price, model, category_2, frame_material) %>%
   
