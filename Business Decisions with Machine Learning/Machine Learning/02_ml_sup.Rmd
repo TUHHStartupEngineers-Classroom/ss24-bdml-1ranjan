@@ -1,6 +1,6 @@
 ---
 title: "02 Supervised ML"
-date: "2020-11-05"
+date: "2024-06-22"
 output:
   html_document:
     toc: true
@@ -29,7 +29,7 @@ library(yardstick)
 library(rpart.plot)
 library(modeldata)
 # Data exploration
-bike_data_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/bike_orderlines.rds")
+bike_data_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/bike_orderlines.rds")
 model_sales_tbl <- bike_data_tbl %>%
   select(total_price, model, category_2, frame_material) %>%
   
@@ -54,7 +54,7 @@ model_sales_tbl %>%
     title = "Total Sales for Each Model",
     x = "Frame Material", y = "Revenue"
   )
-bike_features_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/bike_features_tbl.rds")
+bike_features_tbl <- readRDS("C:/Users/ranja/Documents/GitHub/ss24-bdml-ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/bike_features_tbl.rds")
 bike_features_tbl <- bike_features_tbl %>% 
   select(frame_material:gender, `Rear Derailleur`, `Shift Lever`) %>% 
   mutate(
