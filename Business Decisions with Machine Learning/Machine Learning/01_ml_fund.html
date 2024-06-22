@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2020-07-24">
+<meta name="author" content="Ranjan Mahesh">
+<meta name="dcterms.date" content="2024-06-22">
 
-<title>MyLabJournal - Session 6 - Challenge - Company Segmentation</title>
+<title>MyLabJournal - 01 Machine Learning Fundamentals</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -77,6 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -164,20 +168,28 @@ window.Quarto = {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-journal">    
         <li>
-    <a class="dropdown-item" href="../../content/01_journal/01_tidyverse.html">
- <span class="dropdown-text">01 Tidyverse</span></a>
+    <a class="dropdown-item" href="../../content/01_journal/01_machinelearningfundamentals.qmd">
+ <span class="dropdown-text">01 Machine Learning Fundamentals</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/01_journal/02_data_acquisition.html">
- <span class="dropdown-text">02 Data Acquisition</span></a>
+    <a class="dropdown-item" href="../../content/01_journal/02_supervised_ml.qmd">
+ <span class="dropdown-text">02 Supervised ML</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/01_journal/03_data_wrangling.html">
- <span class="dropdown-text">03 Data Wrangling</span></a>
+    <a class="dropdown-item" href="../../content/01_journal/03_automated_machine_learning_with_h2o.qmd">
+ <span class="dropdown-text">03 Automated Machine Learning with H2O</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../content/01_journal/04_data_visualization.html">
- <span class="dropdown-text">04 Data Visualization</span></a>
+    <a class="dropdown-item" href="../../content/01_journal/04_performance_measures.qmd">
+ <span class="dropdown-text">04 Performance Measures</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/01_journal/05_lime.qmd">
+ <span class="dropdown-text">05 LIME</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/01_journal/06_deep_learning.qmd">
+ <span class="dropdown-text">06 Deep Learning</span></a>
   </li>  
     </ul>
   </li>
@@ -207,18 +219,24 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Session 6 - Challenge - Company Segmentation</h1>
+<h1 class="title">01 Machine Learning Fundamentals</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ranjan Mahesh </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 24, 2020</p>
+      <p class="date">June 22, 2024</p>
     </div>
   </div>
   
@@ -269,7 +287,7 @@ window.Quarto = {
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># STOCK PRICES</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sp_500_prices_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"sp_500_prices_tbl.rds"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>sp_500_prices_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/sp_500_prices_tbl.rds"</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sp_500_prices_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,225,765 × 8
@@ -295,7 +313,7 @@ window.Quarto = {
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SECTOR INFORMATION</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp_500_index_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"sp_500_index_tbl.rds"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp_500_index_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/sp_500_index_tbl.rds"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sp_500_index_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    symbol                                             company       weight
@@ -1357,8 +1375,35 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply your data transformation skills!</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: sp_500_daily_returns_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl <span class="ot">&lt;-</span> sp_500_prices_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(symbol, date, adjusted) <span class="sc">%&gt;%</span>          </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="st">"2018-01-01"</span>) <span class="sc">%&gt;%</span>            </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">adj_lag =</span> <span class="fu">lag</span>(adjusted)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(adj_lag)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">diff =</span> adjusted <span class="sc">-</span> adj_lag,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">pct_return =</span> diff <span class="sc">/</span> adj_lag) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(symbol, date, pct_return)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 141,340 × 3
+# Groups:   symbol [502]
+   symbol date       pct_return
+   &lt;chr&gt;  &lt;date&gt;          &lt;dbl&gt;
+ 1 MSFT   2018-01-03   0.00465 
+ 2 MSFT   2018-01-04   0.00880 
+ 3 MSFT   2018-01-05   0.0124  
+ 4 MSFT   2018-01-08   0.00102 
+ 5 MSFT   2018-01-09  -0.000680
+ 6 MSFT   2018-01-10  -0.00453 
+ 7 MSFT   2018-01-11   0.00296 
+ 8 MSFT   2018-01-12   0.0173  
+ 9 MSFT   2018-01-16  -0.0140  
+10 MSFT   2018-01-17   0.0203  
+# ℹ 141,330 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: sp_500_daily_returns_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-2---convert-to-user-item-format" class="level2">
@@ -1366,8 +1411,8 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <p>The next step is to convert to a user-item format with the <code>symbol</code> in the first column and every other column the value of the <em>daily returns</em> (<code>pct_return</code>) for every stock at each <code>date</code>.</p>
 <p>We’re going to import the correct results first (just in case you were not able to complete the last step).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"sp_500_daily_returns_tbl.rds"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/sp_500_daily_returns_tbl.rds"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sp_500_daily_returns_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 141,340 × 3
    symbol date       pct_return
@@ -1391,9 +1436,35 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Save the result as <code>stock_date_matrix_tbl</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to User-Item Format</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: stock_date_matrix_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to User-Item Format</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>stock_date_matrix_tbl <span class="ot">&lt;-</span> sp_500_daily_returns_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> date,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> pct_return,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="fu">list</span>(<span class="at">pct_return =</span> <span class="dv">0</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>stock_date_matrix_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 502 × 283
+   symbol `2018-01-03` `2018-01-04` `2018-01-05` `2018-01-08` `2018-01-09`
+   &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+ 1 MSFT       0.00465     0.00880       0.0124        0.00102    -0.000680
+ 2 AAPL      -0.000174    0.00465       0.0114       -0.00371    -0.000115
+ 3 AMZN       0.0128      0.00448       0.0162        0.0144      0.00468 
+ 4 FB         0.0179     -0.00184       0.0137        0.00765    -0.00218 
+ 5 JNJ        0.00955    -0.0000712     0.00825       0.00127     0.0159  
+ 6 JPM        0.00102     0.0143       -0.00642       0.00148     0.00507 
+ 7 GOOG       0.0164      0.00362       0.0146        0.00427    -0.000614
+ 8 GOOGL      0.0171      0.00388       0.0133        0.00353    -0.00127 
+ 9 XOM        0.0196      0.00138      -0.000806      0.00450    -0.00425 
+10 BAC       -0.00334     0.0131        0.00464      -0.00692     0.00498 
+# ℹ 492 more rows
+# ℹ 277 more variables: `2018-01-10` &lt;dbl&gt;, `2018-01-11` &lt;dbl&gt;,
+#   `2018-01-12` &lt;dbl&gt;, `2018-01-16` &lt;dbl&gt;, `2018-01-17` &lt;dbl&gt;,
+#   `2018-01-18` &lt;dbl&gt;, `2018-01-19` &lt;dbl&gt;, `2018-01-22` &lt;dbl&gt;,
+#   `2018-01-23` &lt;dbl&gt;, `2018-01-24` &lt;dbl&gt;, `2018-01-25` &lt;dbl&gt;,
+#   `2018-01-26` &lt;dbl&gt;, `2018-01-29` &lt;dbl&gt;, `2018-01-30` &lt;dbl&gt;,
+#   `2018-01-31` &lt;dbl&gt;, `2018-02-01` &lt;dbl&gt;, `2018-02-02` &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: stock_date_matrix_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-3---perform-k-means-clustering" class="level2">
@@ -1401,7 +1472,30 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <p>Next, we’ll perform <strong>K-Means clustering</strong>.</p>
 <p>We’re going to import the correct results first (just in case you were not able to complete the last step).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>stock_date_matrix_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"stock_date_matrix_tbl.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>stock_date_matrix_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/stock_date_matrix_tbl.rds"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>stock_date_matrix_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 502 × 283
+   symbol `2018-01-03` `2018-01-04` `2018-01-05` `2018-01-08` `2018-01-09`
+   &lt;chr&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+ 1 A          0.0254       -0.00750     0.0160        0.00215     0.0246  
+ 2 AAL       -0.0123        0.00630    -0.000380     -0.00988    -0.000959
+ 3 AAP        0.00905       0.0369      0.0106       -0.00704    -0.00808 
+ 4 AAPL      -0.000174      0.00465     0.0114       -0.00371    -0.000115
+ 5 ABBV       0.0156       -0.00570     0.0174       -0.0160      0.00754 
+ 6 ABC        0.00372      -0.00222     0.0121        0.0166      0.00640 
+ 7 ABMD       0.0173        0.0175      0.0154        0.0271      0.00943 
+ 8 ABT        0.00221      -0.00170     0.00289      -0.00288     0.00170 
+ 9 ACN        0.00462       0.0118      0.00825       0.00799     0.00333 
+10 ADBE       0.0188        0.0120      0.0116       -0.00162     0.00897 
+# ℹ 492 more rows
+# ℹ 277 more variables: `2018-01-10` &lt;dbl&gt;, `2018-01-11` &lt;dbl&gt;,
+#   `2018-01-12` &lt;dbl&gt;, `2018-01-16` &lt;dbl&gt;, `2018-01-17` &lt;dbl&gt;,
+#   `2018-01-18` &lt;dbl&gt;, `2018-01-19` &lt;dbl&gt;, `2018-01-22` &lt;dbl&gt;,
+#   `2018-01-23` &lt;dbl&gt;, `2018-01-24` &lt;dbl&gt;, `2018-01-25` &lt;dbl&gt;,
+#   `2018-01-26` &lt;dbl&gt;, `2018-01-29` &lt;dbl&gt;, `2018-01-30` &lt;dbl&gt;,
+#   `2018-01-31` &lt;dbl&gt;, `2018-02-01` &lt;dbl&gt;, `2018-02-02` &lt;dbl&gt;, …</code></pre>
+</div>
 </div>
 <p>Beginning with the <code>stock_date_matrix_tbl</code>, perform the following operations:</p>
 <ul>
@@ -1410,11 +1504,28 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Save the result as <code>kmeans_obj</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create kmeans_obj for 4 centers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create kmeans_obj for 4 centers</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>kmeans_obj <span class="ot">&lt;-</span> stock_date_matrix_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>symbol) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kmeans</span>(<span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>kmeans_obj <span class="sc">%&gt;%</span> <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  totss tot.withinss betweenss  iter
+  &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+1  33.6         29.2      4.40     5</code></pre>
+</div>
 </div>
 <p>Use <code>glance()</code> to get the <code>tot.withinss</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply glance() to get the tot.withinss</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply glance() to get the tot.withinss</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">glance</span>(kmeans_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  totss tot.withinss betweenss  iter
+  &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
+1  33.6         29.2      4.40     5</code></pre>
+</div>
 </div>
 </section>
 <section id="step-4---find-the-optimal-value-of-k" class="level2">
@@ -1422,11 +1533,11 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <p>Now that we are familiar with the process for calculating <code>kmeans()</code>, let’s use <code>purrr</code> to iterate over many values of “k” using the <code>centers</code> argument.</p>
 <p>We’ll use this <strong>custom function</strong> called <code>kmeans_mapper()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>kmeans_mapper <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">center =</span> <span class="dv">3</span>) {</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    stock_date_matrix_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>symbol) <span class="sc">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">kmeans</span>(<span class="at">centers =</span> center, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>kmeans_mapper <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">center =</span> <span class="dv">3</span>) {</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    stock_date_matrix_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(<span class="sc">-</span>symbol) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">kmeans</span>(<span class="at">centers =</span> center, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Apply the <code>kmeans_mapper()</code> and <code>glance()</code> functions iteratively using <code>purrr</code>.</p>
 <ul>
@@ -1436,10 +1547,30 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Save the output as <code>k_means_mapped_tbl</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use purrr to map</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: k_means_mapped_tbl </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use purrr to map</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">centers =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">k_means =</span> centers <span class="sc">%&gt;%</span> <span class="fu">map</span>(kmeans_mapper),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">glance =</span> k_means <span class="sc">%&gt;%</span> <span class="fu">map</span>(glance))</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 3
+   centers k_means  glance          
+     &lt;int&gt; &lt;list&gt;   &lt;list&gt;          
+ 1       1 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 2       2 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 3       3 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 4       4 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 5       5 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 6       6 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 7       7 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 8       8 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 9       9 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+10      10 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+# ℹ 20 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: k_means_mapped_tbl </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, let’s visualize the “tot.withinss” from the glance output as a <strong><em>Scree Plot</em></strong>.</p>
 <ul>
@@ -1449,7 +1580,29 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Add a title “Scree Plot” and feel free to style it with your favorite theme</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Scree Plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize Scree Plot</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(glance) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(centers, tot.withinss) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Visualization</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(centers, tot.withinss)) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#2DC6D6"</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"#2DC6D6"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add labels (which are repelled a little)</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> centers), <span class="at">color =</span> <span class="st">"#2DC6D6"</span>) <span class="sc">+</span> </span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatting</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Skree Plot"</span>,</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Measures the distance each of the customer are from the closes K-Means center"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Conclusion: Based on the Scree Plot, we select 3 clusters to segment the customer base."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="01_ml_fund_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="01_ml_fund_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <p>We can see that the Scree Plot becomes linear (constant rate of change) between 5 and 10 centers for K.</p>
 </section>
@@ -1458,7 +1611,24 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <p>Next, let’s plot the <code>UMAP</code> 2D visualization to help us investigate cluster assignments.</p>
 <p>We’re going to import the correct results first (just in case you were not able to complete the last step).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"k_means_mapped_tbl.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/k_means_mapped_tbl.rds"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 3
+   centers k_means  glance          
+     &lt;int&gt; &lt;list&gt;   &lt;list&gt;          
+ 1       1 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 2       2 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 3       3 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 4       4 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 5       5 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 6       6 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 7       7 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 8       8 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 9       9 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+10      10 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+# ℹ 20 more rows</code></pre>
+</div>
 </div>
 <p>First, let’s apply the <code>umap()</code> function to the <code>stock_date_matrix_tbl</code>, which contains our user-item matrix in tibble format.</p>
 <ul>
@@ -1467,9 +1637,11 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Use the <code>umap()</code> function storing the output as <code>umap_results</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply UMAP</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Store results as: umap_results </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply UMAP</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>umap_results <span class="ot">&lt;-</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">subset</span>(stock_date_matrix_tbl, <span class="at">select =</span> <span class="sc">-</span>symbol) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">umap</span>()</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Store results as: umap_results </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we want to combine the <code>layout</code> from the <code>umap_results</code> with the <code>symbol</code> column from the <code>stock_date_matrix_tbl</code>.</p>
 <ul>
@@ -1479,9 +1651,31 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Save the results as <code>umap_results_tbl</code>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert umap results to tibble with symbols</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: umap_results_tbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert umap results to tibble with symbols</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>umap_results_tbl <span class="ot">&lt;-</span> umap_results<span class="sc">$</span>layout <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">"unique"</span>) <span class="sc">%&gt;%</span> <span class="co"># argument is required to set names in the next step</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bind_cols</span>(</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        stock_date_matrix_tbl <span class="sc">%&gt;%</span> <span class="fu">select</span>(symbol)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: umap_results_tbl</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>umap_results_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 502 × 3
+        x       y symbol
+    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+ 1 -0.852  2.13   A     
+ 2  1.54   1.17   AAL   
+ 3  0.250 -0.111  AAP   
+ 4 -2.14   2.68   AAPL  
+ 5 -1.14   0.0892 ABBV  
+ 6 -0.616 -0.479  ABC   
+ 7 -2.27   2.58   ABMD  
+ 8 -0.976  1.64   ABT   
+ 9 -1.30   1.81   ACN   
+10 -2.51   2.73   ADBE  
+# ℹ 492 more rows</code></pre>
+</div>
 </div>
 <p>Finally, let’s make a quick visualization of the <code>umap_results_tbl</code>.</p>
 <ul>
@@ -1490,7 +1684,20 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Apply <code>theme_tq()</code> and add a title “UMAP Projection”</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize UMAP results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize UMAP results</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>umap_results_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> symbol), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_tq</span>() <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"UMAP Projection"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="01_ml_fund_files/figure-html/unnamed-chunk-17-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="01_ml_fund_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <p>We can now see that we have some clusters. However, we still need to combine the K-Means clusters and the UMAP 2D representation.</p>
 </section>
@@ -1499,14 +1706,50 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <p>Next, we combine the K-Means clusters and the UMAP 2D representation</p>
 <p>We’re going to import the correct results first (just in case you were not able to complete the last step).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"k_means_mapped_tbl.rds"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>umap_results_tbl   <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"umap_results_tbl.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/k_means_mapped_tbl.rds"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>umap_results_tbl   <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">"C:/Users/ranja/Documents/GitHub/ss24-bdml-1ranjan/Business Decisions with Machine Learning/Machine Learning/data/Business Decisions with Machine Learning/umap_results_tbl.rds"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>umap_results_tbl </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 502 × 3
+        V1      V2 symbol
+     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+ 1 -0.764   1.65   A     
+ 2 -2.70    0.455  AAL   
+ 3  0.739  -0.0320 AAP   
+ 4  0.0130  3.09   AAPL  
+ 5 -0.965  -0.0193 ABBV  
+ 6 -0.506  -0.659  ABC   
+ 7  0.436   3.10   ABMD  
+ 8 -0.262   1.35   ABT   
+ 9  0.0598  1.63   ACN   
+10  0.570   3.43   ADBE  
+# ℹ 492 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>k_means_mapped_tbl </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 30 × 3
+   centers k_means  glance          
+     &lt;int&gt; &lt;list&gt;   &lt;list&gt;          
+ 1       1 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 2       2 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 3       3 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 4       4 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 5       5 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 6       6 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 7       7 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 8       8 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+ 9       9 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+10      10 &lt;kmeans&gt; &lt;tibble [1 × 4]&gt;
+# ℹ 20 more rows</code></pre>
+</div>
 </div>
 <p>First, pull out the K-Means for 10 Centers. Use this since beyond this value the Scree Plot flattens. Have a look at the business case to recall how that works.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the k_means_obj from the 10th center</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Store as k_means_obj</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the k_means_obj from the 10th center</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>k_means_obj <span class="ot">&lt;-</span> k_means_mapped_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>(k_means) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pluck</span>(<span class="dv">3</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Store as k_means_obj</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we’ll combine the clusters from the <code>k_means_obj</code> with the <code>umap_results_tbl</code>.</p>
 <ul>
@@ -1518,10 +1761,25 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Store the output as <code>umap_kmeans_results_tbl</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use your dplyr &amp; broom skills to combine the k_means_obj with the umap_results_tbl</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: umap_kmeans_results_tbl </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use your dplyr &amp; broom skills to combine the k_means_obj with the umap_results_tbl</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>kmeans_10_clusters_tbl <span class="ot">&lt;-</span> k_means_obj <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">augment</span>(stock_date_matrix_tbl) <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select the data we need</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(symbol, .cluster)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>sp_500_index_tbl_result <span class="ot">&lt;-</span>sp_500_index_tbl <span class="sc">%&gt;%</span> <span class="fu">select</span>(symbol, company, sector)</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>umap_kmeans_results_tbl <span class="ot">&lt;-</span> umap_results_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(kmeans_10_clusters_tbl,<span class="at">by=</span><span class="st">"symbol"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(sp_500_index_tbl_result,<span class="at">by=</span><span class="st">"symbol"</span>)</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: umap_kmeans_results_tbl </span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">palette_light</span>() <span class="sc">%&gt;%</span> <span class="fu">sample</span>(<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="st">"#2d72d6"</span>, <span class="st">"#2dc6d6"</span>, <span class="st">"#2dd692"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
 </div>
 <p>Plot the K-Means and UMAP results.</p>
 <ul>
@@ -1531,7 +1789,26 @@ $ adjusted &lt;dbl&gt; 15.86624, 16.01451, 16.20183, 15.22628, 15.70234, 15.2340
 <li>Apply colors as you desire (e.g.&nbsp;<code>scale_color_manual(values = palette_light() %&gt;% rep(3))</code>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the combined K-Means and UMAP results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the combined K-Means and UMAP results</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>umap_kmeans_results_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">label_text =</span> <span class="fu">str_glue</span>(<span class="st">"SYMBOL: {symbol}</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="st">                                 Cluster: {.cluster}"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(V1, V2, <span class="at">color =</span> .cluster)) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Geometries</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatting</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span> <span class="fu">c</span>(<span class="st">"#2d72d6"</span>, <span class="st">"#2dc6d6"</span>, <span class="st">"#2dd692"</span>)) <span class="sc">+</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Company Segmentation: 2D Projection"</span>,</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"UMAP 2D Projection with K-Means Cluster Assignment"</span>) <span class="sc">+</span></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="01_ml_fund_files/figure-html/unnamed-chunk-21-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="01_ml_fund_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Congratulations! You are done with the 1st challenge!</p>
 
@@ -2094,6 +2371,31 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script>
 
 
 
