@@ -112,8 +112,8 @@ theme_new <- theme(
   legend.position  = "bottom",
   legend.key       = element_blank(),
   panel.background = element_rect(fill   = "transparent"),
-  panel.border     = element_rect(color = "#FF0000", fill = NA, size = 0.5),
-  panel.grid.major = element_line(color = "#800000", size = 0.333)
+  panel.border     = element_rect(color = "#8B0000", fill = NA, size = 0.5),
+  panel.grid.major = element_line(color = "#F08080", size = 0.333)
 ) 
 extract_h2o_model_name_by_position <- function(h2o_leaderboard, n = 1, verbose = T) {
   
@@ -173,7 +173,7 @@ model_metrics_tbl %>%
   geom_line(size = 1) +
   
   # just for demonstration purposes
-  geom_abline(color = "#FF00FF", linetype = "dotted") +
+  geom_abline(color = "#90EE90", linetype = "dotted") +
   
   theme_new +
   theme(
