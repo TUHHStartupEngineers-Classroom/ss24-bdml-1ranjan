@@ -2,6 +2,9 @@
 title: "03 Automated Machine Learning with H20"
 date: "2024-06-22"
 output:
+  pdf_document:
+    toc: true
+    toc_depth: '3'
   html_document:
     toc: true
     toc_float: true
@@ -9,7 +12,6 @@ output:
     collapsed: false
     number_sections: true
     toc_depth: 3
-    #code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -195,11 +197,11 @@ dept_job_role_tbl %>%
                            "M", sep = "")) %>%
   #Plotting
   ggplot(aes(cost_of_attrition, y = name)) +
-  geom_segment(aes(xend = 0, yend = name),    color = "#2dc6d6") +
-  geom_point(  aes(size = cost_of_attrition), color = "#2dc6d6") +
+  geom_segment(aes(xend = 0, yend = name),    color = "#00008B") +
+  geom_point(  aes(size = cost_of_attrition), color = "#00008B") +
   scale_x_continuous(labels = scales::dollar) +
   geom_label(aes(label = cost_text, size = cost_of_attrition),
-             hjust = "inward", color = "#2dc6d6") +
+             hjust = "inward", color = "#00008B") +
   scale_size(range = c(3, 5)) +
   labs(title = "Estimated cost of Attrition: By Dept and Job Role",
        y = "",
@@ -213,7 +215,7 @@ plot_attrition <- function(data,
                            fct_reorder = TRUE,
                            fct_rev     = FALSE,
                            include_lbl = TRUE,
-                           color       = "#2dc6d6",
+                           color       = "#00008B",
                            units       = c("0", "K", "M")) {
   ### Inputs
   group_vars_expr   <- quos(...)
