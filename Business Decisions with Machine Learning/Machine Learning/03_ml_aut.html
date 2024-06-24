@@ -562,11 +562,11 @@ using the `.groups` argument.</code></pre>
 <span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"M"</span>, <span class="at">sep =</span> <span class="st">""</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Plotting</span></span>
 <span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_of_attrition, <span class="at">y =</span> name)) <span class="sc">+</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> name),    <span class="at">color =</span> <span class="st">"#2dc6d6"</span>) <span class="sc">+</span></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(  <span class="fu">aes</span>(<span class="at">size =</span> cost_of_attrition), <span class="at">color =</span> <span class="st">"#2dc6d6"</span>) <span class="sc">+</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">xend =</span> <span class="dv">0</span>, <span class="at">yend =</span> name),    <span class="at">color =</span> <span class="st">"#00008B"</span>) <span class="sc">+</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(  <span class="fu">aes</span>(<span class="at">size =</span> cost_of_attrition), <span class="at">color =</span> <span class="st">"#00008B"</span>) <span class="sc">+</span></span>
 <span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>dollar) <span class="sc">+</span></span>
 <span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="fu">aes</span>(<span class="at">label =</span> cost_text, <span class="at">size =</span> cost_of_attrition),</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> <span class="st">"inward"</span>, <span class="at">color =</span> <span class="st">"#2dc6d6"</span>) <span class="sc">+</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>             <span class="at">hjust =</span> <span class="st">"inward"</span>, <span class="at">color =</span> <span class="st">"#00008B"</span>) <span class="sc">+</span></span>
 <span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Estimated cost of Attrition: By Dept and Job Role"</span>,</span>
 <span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
@@ -586,7 +586,7 @@ using the `.groups` argument.</code></pre>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fct_reorder =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>                           <span class="at">fct_rev     =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>                           <span class="at">include_lbl =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color       =</span> <span class="st">"#2dc6d6"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color       =</span> <span class="st">"#00008B"</span>,</span>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>                           <span class="at">units       =</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"K"</span>, <span class="st">"M"</span>)) {</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">### Inputs</span></span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  group_vars_expr   <span class="ot">&lt;-</span> <span class="fu">quos</span>(...)</span>
@@ -2497,7 +2497,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":false,"openEffect":"zoom","descPosition":"bottom"});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;

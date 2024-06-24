@@ -353,13 +353,13 @@ Caused by error in `$&lt;-.data.frame`:
    &lt;chr&gt;         
  1 Race          
  2 Endurance     
- 3 Cyclocross    
- 4 Triathlon Bike
- 5 Cross-Country 
- 6 All-Road      
- 7 E-Gravel      
- 8 E-Mountain    
- 9 Downhill      
+ 3 E-Road        
+ 4 Cyclocross    
+ 5 Triathlon Bike
+ 6 Cross-Country 
+ 7 All-Road      
+ 8 E-Gravel      
+ 9 E-Mountain    
 10 Dirt Jump     
 11 Enduro        
 12 E-City        
@@ -367,32 +367,30 @@ Caused by error in `$&lt;-.data.frame`:
 14 E-Fitness     
 15 City          
 16 Touring       
-17 E-Road        
-18 Fat Bikes     
-19 Adventure     
-20 Trail         </code></pre>
+17 Fat Bikes     
+18 Adventure     
+19 Trail         
+20 Downhill      </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>split_obj <span class="sc">%&gt;%</span> <span class="fu">testing</span>() <span class="sc">%&gt;%</span> <span class="fu">distinct</span>(category_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 1
+<pre><code># A tibble: 14 × 1
    category_2    
    &lt;chr&gt;         
  1 Race          
  2 Endurance     
- 3 Cyclocross    
- 4 Triathlon Bike
- 5 Fat Bikes     
- 6 Cross-Country 
- 7 Adventure     
- 8 All-Road      
- 9 E-Gravel      
-10 Trail         
-11 E-Mountain    
-12 Enduro        
-13 E-Trekking    
-14 E-City        
-15 Touring       
-16 City          </code></pre>
+ 3 Triathlon Bike
+ 4 Cross-Country 
+ 5 Adventure     
+ 6 All-Road      
+ 7 Trail         
+ 8 E-Mountain    
+ 9 Downhill      
+10 Dirt Jump     
+11 Enduro        
+12 E-Trekking    
+13 City          
+14 Touring       </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>train_tbl <span class="ot">&lt;-</span> <span class="fu">training</span>(split_obj)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>test_tbl  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split_obj)</span>
@@ -461,54 +459,54 @@ Call:  stats::glm(formula = ..y ~ ., family = stats::binomial, data = data)
 
 Coefficients:
                (Intercept)                          id  
-                -9.876e+15                   1.166e+14  
+                -6.836e+15                   3.236e+13  
                     weight                       price  
-                -6.358e+14                   6.566e+11  
+                -2.420e+14                   5.473e+11  
           shimano_dura_ace             shimano_ultegra  
-                -1.532e+15                   8.372e+14  
+                 1.544e+15                   3.901e+14  
                shimano_105              shimano_tiagra  
-                 1.238e+15                  -4.366e+15  
+                 6.132e+14                  -3.457e+15  
              shimano_deore                 shimano_slx  
-                -1.587e+15                  -3.725e+15  
+                 7.212e+14                  -4.092e+15  
                shimano_grx                  Shimano_xt  
-                 1.837e+15                  -3.332e+15  
+                 1.652e+15                   1.557e+15  
              Shimano_saint                    SRAM_red  
-                 8.542e+15                  -2.471e+15  
-                SRAM_force                   SRAM_apex  
-                 3.355e+15                  -1.133e+15  
-                  SRAM_xx1                    SRAM_x01  
-                 1.010e+15                   2.309e+15  
-                   SRAM_gx                     SRAM_nx  
-                 8.083e+14                   3.360e+15  
-                   SRAM_sx          Campagnolo_potenza  
-                 9.933e+14                   1.898e+15  
-   Campagnolo_super_record               shimano_nexus  
-                -5.933e+15                   2.733e+15  
-            shimano_alfine           category_1_Gravel  
-                 2.410e+15                   1.940e+15  
-  category_1_Hybrid...City         category_1_Mountain  
-                -1.072e+16                  -8.281e+14  
-           category_1_Road         category_2_All.Road  
-                 9.813e+15                   4.673e+14  
-           category_2_City    category_2_Cross.Country  
-                -3.838e+15                  -3.739e+14  
-     category_2_Cyclocross        category_2_Dirt.Jump  
-                -1.543e+15                  -3.100e+15  
-       category_2_Downhill           category_2_E.City  
-                -3.961e+15                  -2.356e+15  
-      category_2_E.Fitness         category_2_E.Gravel  
-                -1.008e+16                   7.968e+15  
-     category_2_E.Mountain           category_2_E.Road  
-                 5.212e+15                   7.287e+15  
-     category_2_E.Trekking        category_2_Endurance  
-                        NA                   2.760e+15  
-         category_2_Enduro        category_2_Fat.Bikes  
-                -3.596e+15                   1.001e+16  
-           category_2_Race          category_2_Touring  
-                 1.797e+15                          NA  
+                 7.012e+15                   1.545e+15  
+                SRAM_force                  SRAM_rival  
+                 2.633e+15                   3.514e+15  
+                 SRAM_apex                    SRAM_xx1  
+                -5.619e+14                  -3.154e+15  
+                  SRAM_x01                     SRAM_gx  
+                 2.619e+15                  -9.250e+14  
+                   SRAM_nx                     SRAM_sx  
+                 4.083e+14                  -2.576e+15  
+        Campagnolo_potenza     Campagnolo_super_record  
+                 4.095e+15                   8.660e+14  
+             shimano_nexus              shimano_alfine  
+                 1.564e+14                  -2.350e+15  
+         category_1_Gravel    category_1_Hybrid...City  
+                 5.880e+15                  -4.743e+14  
+       category_1_Mountain             category_1_Road  
+                 4.575e+15                   8.762e+15  
+       category_2_All.Road             category_2_City  
+                -3.146e+15                   4.189e+14  
+  category_2_Cross.Country       category_2_Cyclocross  
+                 2.986e+15                  -1.266e+15  
+      category_2_Dirt.Jump         category_2_Downhill  
+                -3.349e+15                  -3.658e+15  
+         category_2_E.City        category_2_E.Fitness  
+                 5.572e+15                   6.335e+14  
+       category_2_E.Gravel       category_2_E.Mountain  
+                 6.011e+15                   5.789e+15  
+         category_2_E.Road       category_2_E.Trekking  
+                 1.751e+15                          NA  
+      category_2_Endurance           category_2_Enduro  
+                -1.970e+15                  -2.396e+15  
+      category_2_Fat.Bikes             category_2_Race  
+                 4.295e+15                  -6.368e+14  
 
 ...
-and 34 more lines.</code></pre>
+and 36 more lines.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>bike_fit <span class="sc">%&gt;%</span> </span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull_workflow_fit</span>() <span class="sc">%&gt;%</span> </span>
@@ -518,20 +516,20 @@ and 34 more lines.</code></pre>
 ℹ Please use `extract_fit_parsnip()` instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 76 × 5
+<pre><code># A tibble: 77 × 5
    term             estimate  std.error  statistic p.value
    &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
- 1 (Intercept)      -9.88e15 411910969. -23975509.       0
- 2 id                1.17e14   1520445.  76668071.       0
- 3 weight           -6.36e14   9108833. -69802232.       0
- 4 price             6.57e11      8468.  77548561.       0
- 5 shimano_dura_ace -1.53e15 101163651. -15147272.       0
- 6 shimano_ultegra   8.37e14  93646685.   8940254.       0
- 7 shimano_105       1.24e15  95864806.  12917644.       0
- 8 shimano_tiagra   -4.37e15 110928403. -39360967.       0
- 9 shimano_deore    -1.59e15  34528076. -45972659.       0
-10 shimano_slx      -3.73e15  49281962. -75592066.       0
-# ℹ 66 more rows</code></pre>
+ 1 (Intercept)      -6.84e15 380618245. -17959097.       0
+ 2 id                3.24e13   1569572.  20615824.       0
+ 3 weight           -2.42e14   7984078. -30314880.       0
+ 4 price             5.47e11      7900.  69270035.       0
+ 5 shimano_dura_ace  1.54e15  72783049.  21217301.       0
+ 6 shimano_ultegra   3.90e14  65427410.   5962163.       0
+ 7 shimano_105       6.13e14  63185824.   9705151.       0
+ 8 shimano_tiagra   -3.46e15  71126190. -48601974.       0
+ 9 shimano_deore     7.21e14  41546003.  17358217.       0
+10 shimano_slx      -4.09e15  49807063. -82161111.       0
+# ℹ 67 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>bike_pred <span class="ot">&lt;-</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(bike_fit, test_data, <span class="at">type=</span><span class="st">"prob"</span>) <span class="sc">%&gt;%</span> </span>
@@ -565,13 +563,13 @@ prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases</cod
 <pre><code># A tibble: 47 × 4
    .pred_aluminium .pred_carbon frame_material category_2    
              &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;          &lt;chr&gt;         
- 1        1   e+ 0     2.22e-16 carbon         Race          
+ 1        2.22e-16     1   e+ 0 carbon         Race          
  2        2.22e-16     1   e+ 0 carbon         Race          
  3        2.22e-16     1   e+ 0 carbon         Race          
- 4        1   e+ 0     2.22e-16 aluminium      Endurance     
- 5        2.22e-16     1   e+ 0 aluminium      Endurance     
- 6        1   e+ 0     2.22e-16 aluminium      Endurance     
- 7        1   e+ 0     2.22e-16 carbon         Cyclocross    
+ 4        2.22e-16     1   e+ 0 carbon         Race          
+ 5        1   e+ 0     2.22e-16 aluminium      Endurance     
+ 6        2.22e-16     1   e+ 0 carbon         Endurance     
+ 7        2.22e-16     1   e+ 0 carbon         Triathlon Bike
  8        2.22e-16     1   e+ 0 carbon         Triathlon Bike
  9        2.22e-16     1   e+ 0 carbon         Triathlon Bike
 10        2.22e-16     1   e+ 0 carbon         Triathlon Bike
@@ -584,7 +582,7 @@ prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases</cod
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 roc_auc binary         0.763</code></pre>
+1 roc_auc binary         0.868</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>roc_car <span class="ot">&lt;-</span> bike_pred <span class="sc">%&gt;%</span> </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">roc_auc</span>(<span class="at">truth =</span> frame_material, .pred_carbon)</span>
@@ -593,7 +591,7 @@ prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases</cod
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-1 roc_auc binary         0.237</code></pre>
+1 roc_auc binary         0.132</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluation</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>model_01_linear_lm_simple <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>(<span class="at">mode =</span> <span class="st">"regression"</span>) <span class="sc">%&gt;%</span></span>
@@ -609,19 +607,19 @@ stats::lm(formula = price ~ category_2 + frame_material, data = data)
 
 Coefficients:
              (Intercept)        category_2All-Road            category_2City  
-                 2525.49                   -819.63                  -1505.55  
+                  2504.7                    -694.0                   -1492.0  
  category_2Cross-Country      category_2Cyclocross       category_2Dirt Jump  
-                 -514.37                   -638.07                  -1259.82  
+                  -165.3                    -799.5                   -1480.7  
       category_2Downhill          category_2E-City       category_2E-Fitness  
-                 1142.34                    609.40                    516.85  
+                   162.1                     531.4                     537.6  
       category_2E-Gravel      category_2E-Mountain          category_2E-Road  
-                  880.00                    474.01                    393.51  
+                  1100.0                     833.9                     414.3  
     category_2E-Trekking       category_2Endurance          category_2Enduro  
-                  997.51                   -758.47                    243.00  
+                   822.6                    -802.6                     369.2  
      category_2Fat Bikes            category_2Race         category_2Touring  
-                -1950.00                    502.80                  -1315.06  
+                 -1705.0                     807.5                   -1267.4  
          category_2Trail  category_2Triathlon Bike      frame_materialcarbon  
-                 -739.34                     69.23                   1563.51  </code></pre>
+                  -770.1                     286.4                    1584.3  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>test_data <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(category_2 <span class="sc">!=</span> <span class="st">"Fat Bikes"</span>)</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>yards <span class="ot">&lt;-</span> model_01_linear_lm_simple</span>
@@ -635,19 +633,19 @@ stats::lm(formula = price ~ category_2 + frame_material, data = data)
 
 Coefficients:
              (Intercept)        category_2All-Road            category_2City  
-                 2525.49                   -819.63                  -1505.55  
+                  2504.7                    -694.0                   -1492.0  
  category_2Cross-Country      category_2Cyclocross       category_2Dirt Jump  
-                 -514.37                   -638.07                  -1259.82  
+                  -165.3                    -799.5                   -1480.7  
       category_2Downhill          category_2E-City       category_2E-Fitness  
-                 1142.34                    609.40                    516.85  
+                   162.1                     531.4                     537.6  
       category_2E-Gravel      category_2E-Mountain          category_2E-Road  
-                  880.00                    474.01                    393.51  
+                  1100.0                     833.9                     414.3  
     category_2E-Trekking       category_2Endurance          category_2Enduro  
-                  997.51                   -758.47                    243.00  
+                   822.6                    -802.6                     369.2  
      category_2Fat Bikes            category_2Race         category_2Touring  
-                -1950.00                    502.80                  -1315.06  
+                 -1705.0                     807.5                   -1267.4  
          category_2Trail  category_2Triathlon Bike      frame_materialcarbon  
-                 -739.34                     69.23                   1563.51  </code></pre>
+                  -770.1                     286.4                    1584.3  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> bike_features_tbl <span class="sc">%&gt;%</span> </span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">category_2 =</span> <span class="fu">as.factor</span>(category_2) <span class="sc">%&gt;%</span> </span>
@@ -655,7 +653,7 @@ Coefficients:
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(category_2, price)) <span class="sc">+</span></span>
 <span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"#2dc6d6"</span>) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">"#00008B"</span>) <span class="sc">+</span></span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> frame_material) <span class="sc">+</span></span>
 <span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
@@ -729,7 +727,7 @@ Groups with fewer than two datapoints have been dropped.
 <pre><code># A tibble: 1 × 1
   .pred
   &lt;dbl&gt;
-1 3028.</code></pre>
+1 3312.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>models_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">model_id =</span> <span class="fu">str_c</span>(<span class="st">"Model 0"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>),</span>
@@ -754,7 +752,7 @@ Groups with fewer than two datapoints have been dropped.
 <pre><code># A tibble: 1 × 30
   model_id model.x  .pred category_2 model.y     frame_material shimano_dura_ace
   &lt;chr&gt;    &lt;list&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;                     &lt;dbl&gt;
-1 Model 01 &lt;fit[+]&gt; 3028. Race       Exceed AL … aluminium                     0
+1 Model 01 &lt;fit[+]&gt; 3312. Race       Exceed AL … aluminium                     0
 # ℹ 23 more variables: shimano_ultegra &lt;dbl&gt;, shimano_105 &lt;dbl&gt;,
 #   shimano_tiagra &lt;dbl&gt;, Shimano_sora &lt;dbl&gt;, shimano_deore &lt;dbl&gt;,
 #   shimano_slx &lt;dbl&gt;, shimano_grx &lt;dbl&gt;, Shimano_xt &lt;dbl&gt;, Shimano_xtr &lt;dbl&gt;,
@@ -1344,7 +1342,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
 window.onload = () => {
   lightboxQuarto.on('slide_before_load', (data) => {
     const { slideIndex, slideNode, slideConfig, player, trigger } = data;
