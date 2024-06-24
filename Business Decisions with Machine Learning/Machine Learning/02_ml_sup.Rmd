@@ -2,6 +2,9 @@
 title: "02 Supervised ML"
 date: "2024-06-22"
 output:
+  word_document:
+    toc: true
+    toc_depth: '3'
   html_document:
     toc: true
     toc_float: true
@@ -9,7 +12,6 @@ output:
     collapsed: false
     number_sections: true
     toc_depth: 3
-    #code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
